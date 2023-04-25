@@ -40,8 +40,10 @@ const dataSources = computed(() => chatStore.getChatByUuid(+uuid))
 const conversationList = computed(() => dataSources.value.filter(item => (!item.inversion && !!item.conversationOptions)))
 
 const prompt = ref<string>('')
+// const token = ref<string>('')
 const loading = ref<boolean>(false)
 const inputRef = ref<Ref | null>(null)
+const open = ref<boolean>(false)
 
 // 添加PromptStore
 const promptStore = usePromptStore()
@@ -67,7 +69,11 @@ async function onConversation() {
 
   if (!message || message.trim() === '')
     return
-
+  // token检验并触发后续事件
+  // if (!token.value || token.value.trim() === '') {
+    // open.value = true
+    // return
+  // }
   controller = new AbortController()
 
   addChat(
@@ -557,4 +563,27 @@ onUnmounted(() => {
       </div>
     </footer>
   </div>
+  <Teleport to="body">
+    <div v-if="open" class="dialog">
+      <p>Token失效!请检查Token。</p>
+      <button @click="open = false ">
+        确定
+      </button>
+    </div>
+  </Teleport>
 </template>
+
+<style scoped>
+.dialog {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  max-width: 80%;
+  padding: 20px;
+  border-radius: 5px;
+  background-color: #c0ba41;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+</style>
