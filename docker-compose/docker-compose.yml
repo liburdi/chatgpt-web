@@ -3,12 +3,12 @@ version: '3'
 services:
   app:
     container_name: chatgpt-web
-    build: ../
+    images: kenritchie/chatgpt-web
     ports:
       - 3002:3002
     environment:
       # 二选一
-      OPENAI_API_KEY: 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
+      OPENAI_API_KEY: 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
       # 二选一
       OPENAI_ACCESS_TOKEN:
       # API接口地址，可选，设置 OPENAI_API_KEY 时可用
