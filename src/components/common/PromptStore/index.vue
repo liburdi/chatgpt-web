@@ -93,11 +93,11 @@ const inputStatus = computed (() => tempPromptKey.value.trim().length < 1 || tem
 const addPromptTemplate = () => {
   for (const i of promptList.value) {
     if (i.key === tempPromptKey.value) {
-      message.error(t('store.addRepeatTitleTips'))
+      // message.error(t('store.addRepeatTitleTips'))
       return
     }
     if (i.value === tempPromptValue.value) {
-      message.error(t('store.addRepeatContentTips', { msg: tempPromptKey.value }))
+      // message.error(t('store.addRepeatContentTips', { msg: tempPromptKey.value }))
       return
     }
   }
@@ -121,11 +121,11 @@ const modifyPromptTemplate = () => {
   // 搜索有冲突的部分
   for (const i of tempList) {
     if (i.key === tempPromptKey.value) {
-      message.error(t('store.editRepeatTitleTips'))
+      // message.error(t('store.editRepeatTitleTips'))
       return
     }
     if (i.value === tempPromptValue.value) {
-      message.error(t('store.editRepeatContentTips', { msg: i.key }))
+      // message.error(t('store.editRepeatContentTips', { msg: i.key }))
       return
     }
   }
@@ -173,12 +173,12 @@ const importPromptTemplate = (from = 'online') => {
       let safe = true
       for (const j of promptList.value) {
         if (j.key === i[key]) {
-          message.warning(t('store.importRepeatTitle', { msg: i[key] }))
+          // message.warning(t('store.importRepeatTitle', { msg: i[key] }))
           safe = false
           break
         }
         if (j.value === i[value]) {
-          message.warning(t('store.importRepeatContent', { msg: i[key] }))
+          // message.warning(t('store.importRepeatContent', { msg: i[key] }))
           safe = false
           break
         }
@@ -237,6 +237,8 @@ const downloadPromptTemplate = async () => {
     importLoading.value = false
   }
 }
+downloadURL.value = 'https://raw.githubusercontent.com/PlexPt/awesome-chatgpt-prompts-zh/main/prompts-zh.json'
+downloadPromptTemplate()
 
 // 移动端自适应相关
 const renderTemplate = () => {

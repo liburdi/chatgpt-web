@@ -63,7 +63,7 @@ dataSources.value.forEach((item, index) => {
 
 function handleSubmit() {
   if (description.value !== '14d')
-    ms.error(t('无效token,左下角设置'))
+    ms.error(t('无效token，左下角设置'))
   else
     onConversation()
 }
