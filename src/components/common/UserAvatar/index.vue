@@ -1,6 +1,7 @@
 <script setup lang='ts'>
 import { computed, ref } from 'vue'
 import { NAvatar, useMessage } from 'naive-ui'
+import type { UserInfo } from '@/store/modules/user/helper'
 import { useUserStore } from '@/store'
 import defaultAvatar from '@/assets/avatar.jpg'
 import { isString } from '@/utils/is'
@@ -12,30 +13,29 @@ const open = ref<boolean>(false)
 const token = ref<string>('')
 
 const userInfo = computed(() => userStore.userInfo)
-const count = ref(userInfo.value.count ?? 0)
-// eslint-disable-next-line unused-imports/no-unused-vars
-const avatar = ref(userInfo.value.avatar ?? '')
-// eslint-disable-next-line unused-imports/no-unused-vars
-const name = ref(userInfo.value.name ?? '')
+
+// const count = ref(userInfo.value.count ?? 0)
 
 const description = ref(userInfo.value.description ?? '')
+
 function setToken() {
   open.value = true
 }
 
 function handleSetToken() {
   if (token.value === 'usA3lAH') {
-    count.value = 20
-    description.value = 'usA3lAH'
-    userStore.updateUserInfo(count)
-    userStore.updateUserInfo(description)
     ms.success(t('设置成功'))
     window.location.reload()
   }
   else {
-    ms.fail(t('无效token'))
+    ms.error(t('无效token'))
   }
   open.value = false
+}
+
+function updateUserInfo(options: Partial<UserInfo>) {
+  userStore.updateUserInfo(options)
+  ms.success(t('common.success'))
 }
 </script>
 
@@ -69,14 +69,14 @@ function handleSetToken() {
     <div v-if="open" class="dialog">
       <div style="position:flex;">
         <el-input
-          v-model="token"
+          v-model:value="description"
           class="w-50 m-2"
           size="small"
           placeholder="设置token开始智能之旅～"
         />
 
-        <el-button type="success" size="small" @click="handleSetToken">
-          设置
+        <el-button type="success" size="small" @click="updateUserInfo({ description })">
+          设
         </el-button>
         <el-button type="warning" size="small" @click="handleSetToken">
           免费试用20次
