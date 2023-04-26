@@ -1,6 +1,6 @@
 <script setup lang='ts'>
 import { computed, ref } from 'vue'
-import { NAvatar, useMessage } from 'naive-ui'
+import { NAvatar, NButton, NInput, useMessage } from 'naive-ui'
 import type { UserInfo } from '@/store/modules/user/helper'
 import { useUserStore } from '@/store'
 import defaultAvatar from '@/assets/avatar.jpg'
@@ -10,7 +10,6 @@ import { t } from '@/locales'
 const userStore = useUserStore()
 const ms = useMessage()
 const open = ref<boolean>(false)
-const token = ref<string>('')
 
 const userInfo = computed(() => userStore.userInfo)
 
@@ -22,8 +21,9 @@ function setToken() {
   open.value = true
 }
 
-function handleSetToken() {
-  if (token.value === 'usA3lAH') {
+function handleSetToken(options: Partial<UserInfo>) {
+  if (description.value === '14d') {
+    userStore.updateUserInfo(options)
     ms.success(t('设置成功'))
     window.location.reload()
   }
@@ -31,11 +31,6 @@ function handleSetToken() {
     ms.error(t('无效token'))
   }
   open.value = false
-}
-
-function updateUserInfo(options: Partial<UserInfo>) {
-  userStore.updateUserInfo(options)
-  ms.success(t('common.success'))
 }
 </script>
 
@@ -60,31 +55,25 @@ function updateUserInfo(options: Partial<UserInfo>) {
       </h2>
       <p class="overflow-hidden text-xs text-gray-500 text-ellipsis whitespace-nowrap">
         <button @click="setToken">
-          {{ userInfo.description ?? '设置' }}
+          {{ userInfo.description === '14d' ? userInfo.description : '设置token' }}
         </button>
       </p>
     </div>
   </div>
   <Teleport to="body">
     <div v-if="open" class="dialog">
-      <div style="position:flex;">
-        <el-input
-          v-model:value="description"
-          class="w-50 m-2"
-          size="small"
-          placeholder="设置token开始智能之旅～"
-        />
-
-        <el-button type="success" size="small" @click="updateUserInfo({ description })">
-          设
-        </el-button>
-        <el-button type="warning" size="small" @click="handleSetToken">
+      <div class="flex items-center space-x-4 w-[200px]">
+        <NInput v-model:value="description" placeholder="" />
+      </div>
+      <NButton size="tiny" text type="primary" @click="handleSetToken({ description })">
+        设置token
+      </NButton>
+      <!-- <el-button type="warning" size="small" @click="handleSetToken">
           免费试用20次
         </el-button>
         <el-button type="danger" size="small" @click="handleSetToken">
           9.9元购买
-        </el-button>
-      </div>
+        </el-button> -->
     </div>
   </Teleport>
 </template>
@@ -105,7 +94,7 @@ function updateUserInfo(options: Partial<UserInfo>) {
   max-width: 80%;
   padding: 20px;
   border-radius: 5px;
-  background-color: #18a058;
+  background-color: #ffffff;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 </style>

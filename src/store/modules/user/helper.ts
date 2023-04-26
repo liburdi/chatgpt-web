@@ -18,7 +18,7 @@ export function defaultSetting(): UserState {
     userInfo: {
       avatar: 'https://avatars.githubusercontent.com/u/40747836?v=4',
       name: '游客',
-      description: '设置token',
+      description: '',
       count: 0,
     },
   }
