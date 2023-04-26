@@ -2,10 +2,10 @@
   "name": "chatgpt-web",
   "version": "2.10.9",
   "private": false,
-  "description": "ChatGPT Web",
+  "description": "ChatMan",
   "author": "liburdi",
   "keywords": [
-    "chatgpt-web",
+    "chatman",
     "chatgpt",
     "chatbot",
     "vue"

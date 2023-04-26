@@ -63,10 +63,13 @@ function handleSetToken(options: Partial<UserInfo>) {
   <Teleport to="body">
     <div v-if="open" class="dialog">
       <div class="flex items-center space-x-4 w-[200px]">
-        <NInput v-model:value="description" placeholder="" />
+        <NInput v-model:value="description" placeholder="输入token，这是您的凭证" />
       </div>
-      <NButton size="tiny" text type="primary" @click="handleSetToken({ description })">
-        设置token
+      <NButton size="small" text type="primary" @click="handleSetToken({ description })">
+        设置
+      </NButton>
+      <NButton size="small" text type="error" @click="open = false">
+        取消
       </NButton>
       <!-- <el-button type="warning" size="small" @click="handleSetToken">
           免费试用20次
