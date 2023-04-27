@@ -13,7 +13,7 @@ export default {
     export: '导出',
     exportSuccess: '导出成功',
     import: '导入',
-    importSuccess: '导入成功',
+    importSuccess: '导入成功，"/"触发场景',
     clear: '清空',
     clearSuccess: '清空成功',
     yes: '是',
@@ -29,8 +29,8 @@ export default {
   },
   chat: {
     newChatButton: '新建聊天',
-    placeholder: '来说点什么吧...（Shift + Enter = 换行，"/" 触发提示词）',
-    placeholderMobile: '来说点什么...',
+    placeholder: '来说点什么吧...（Shift + Enter = 换行，"/" 触发场景）',
+    placeholderMobile: '来说点什么吧...（"/" 触发场景）',
     copy: '复制',
     copied: '复制成功',
     copyCode: '复制代码',
@@ -74,7 +74,7 @@ export default {
     monthlyUsage: '本月使用量',
   },
   store: {
-    siderButton: '提示词商店',
+    siderButton: '场景管理',
     local: '本地',
     online: '在线',
     title: '标题',

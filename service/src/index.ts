@@ -14,13 +14,15 @@ app.use(express.json())
 
 app.all('*', (_, res, next) => {
   res.header('Access-Control-Allow-Origin', '*')
-  res.header('Access-Control-Allow-Headers', 'authorization, Content-Type')
+  res.header('Access-Control-Allow-Headers', 'authorization, Content-Type, Origin, Referer')
   res.header('Access-Control-Allow-Methods', '*')
   next()
 })
 
 router.post('/chat-process', [auth, limiter], async (req, res) => {
   res.setHeader('Content-type', 'application/octet-stream')
+  res.setHeader('Origin', 'https://chat.openai.com')
+  res.setHeader('Referer', 'https://chat.openai.com')
 
   try {
     const { prompt, options = {}, systemMessage, temperature, top_p } = req.body as RequestProps
