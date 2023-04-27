@@ -12,6 +12,6 @@
   docker-compose down
 	```
 - ```shell
-	# 访问
-	localhost:3003
+  # 访问
+	http://localhost:3003
   ```
