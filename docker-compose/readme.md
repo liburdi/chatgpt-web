@@ -10,7 +10,8 @@
 - ```shell
   # 结束运行
   docker-compose down
-	
+	```
+- ```shell
 	# 访问
 	localhost:3003
   ```
