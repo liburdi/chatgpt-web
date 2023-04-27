@@ -11,7 +11,8 @@
   # 结束运行
   docker-compose down
 	```
+	
 - ```shell
   # 访问
-	http://localhost:3003
-  ```
+  http://localhost:3003
+	```
