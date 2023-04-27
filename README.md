@@ -199,6 +199,10 @@ http://localhost:3002/
 
 [Hub 地址](https://hub.docker.com/repository/docker/liburdi/chatgpt-web/general)
 
+[部署方式](https://github.com/liburdi/chatgpt-web/tree/main/docker-compose#readme)
+
+
+
 - `OPENAI_API_BASE_URL`  可选，设置 `OPENAI_API_KEY` 时可用
 - `OPENAI_API_MODEL`  可选，设置 `OPENAI_API_KEY` 时可用
 ###  使用 Railway 部署
